@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Iosevka NFM:size=16:antialias=true:autohint=true";
+static char *font = "Iosevka NFM:size=14:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
 	"Apple Color Emoji:size=16:style=Regular",
@@ -97,45 +97,48 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 8;
+unsigned int tabspaces = 2;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#45475A",
-	"#F38BA8",
-	"#A6E3A1",
-	"#F9E2AF",
-	"#89B4FA",
-	"#F5C2E7",
-	"#94E2D5",
-	"#BAC2DE",
+	"#000000",
+	"#cd0000",
+	"#00cd00",
+	"#cdcd00",
+	"#80a0ff",
+	"#cd00cd",
+	"#00cdcd",
+	"#e5e5e5",
 
 	/* 8 bright colors */
-	"#585B70",
-	"#F38BA8",
-	"#A6E3A1",
-	"#F9E2AF",
-	"#89B4FA",
-	"#F5C2E7",
-	"#94E2D5",
-	"#A6ADC8",
+	"#7f7f7f",
+	"#ff0000",
+	"#00ff00",
+	"#ffff00",
+	"#5c5cff",
+	"#ff00ff",
+	"#00ffff",
+	"#ffffff",
 
-	[256] = "#CDD6F4", /* default foreground colour */
-	[257] = "#1E1E2E", /* default background colour */
-	[258] = "#F5E0DC", /*575268*/
+	[255] = 0,
+
+	/* more colors can be added after 255 to use with DefaultXX */
+	"#cccccc", /* default reverse cursor colour */
+	"#555555", /* default cursor colour */
+	"#ffffff", /* default foreground colour */
+	"#000000", /* default background colour */
 };
-
 
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 256;
-unsigned int defaultbg = 257;
-unsigned int defaultcs = 258;
-static unsigned int defaultrcs = 258;
+unsigned int defaultfg = 258;
+unsigned int defaultbg = 259;
+unsigned int defaultcs = 256;
+static unsigned int defaultrcs = 257;
 
 /*
  * Default shape of cursor
