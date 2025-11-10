@@ -93,46 +93,43 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
-/* Habamax terminal colors (16 first used in escape sequence) */
+/* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#1c1c1c",
-	"#af5f5f",
-	"#5faf5f",
-	"#af875f",
-	"#5f87af",
-	"#af87af",
-	"#5f8787",
-	"#9e9e9e",
+	"#45475A",
+	"#F38BA8",
+	"#A6E3A1",
+	"#F9E2AF",
+	"#89B4FA",
+	"#F5C2E7",
+	"#94E2D5",
+	"#BAC2DE",
 
 	/* 8 bright colors */
-	"#767676",
-	"#d75f87",
-	"#87d787",
-	"#d7af87",
-	"#5fafd7",
-	"#d787d7",
-	"#87afaf",
-	"#bcbcbc",
+	"#585B70",
+	"#F38BA8",
+	"#A6E3A1",
+	"#F9E2AF",
+	"#89B4FA",
+	"#F5C2E7",
+	"#94E2D5",
+	"#A6ADC8",
 
-	[255] = 0,
-
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#ffffff", /* cursor background */
-	"#000000", /* cursor foreground */
-	"#bcbcbc", /* foreground colour */
-	"#1c1c1c", /* background colour */
+	[256] = "#CDD6F4", /* default foreground colour */
+	[257] = "#1E1E2E", /* default background colour */
+	[258] = "#F5E0DC", /*575268*/
 };
+
 
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 258;
-unsigned int defaultbg = 259;
-unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultfg = 256;
+unsigned int defaultbg = 257;
+unsigned int defaultcs = 258;
+static unsigned int defaultrcs = 258;
 
 /*
  * Default shape of cursor
