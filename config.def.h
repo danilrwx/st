@@ -8,7 +8,6 @@
 static char *font = "Iosevka:size=12:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
-	"FontAwesome:size=10:antialias=true:autohint=true",
 	"Noto Color Emoji:size=12:antialias=true:autohint=true",
 /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
 /*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
