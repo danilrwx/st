@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Iosevka NFM:size=14:antialias=true:autohint=true";
+static char *font = "Iosevka:size=14:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
 	"Apple Color Emoji:size=14:antialias=true:autohint=true",
