@@ -101,7 +101,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 2;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 0.85; /* as the bar's, ALPHA in ~/dotfiles bin/theme; see-through only under xcompmgr */
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
