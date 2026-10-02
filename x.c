@@ -800,6 +800,27 @@ xloadcolor(int i, const char *name, Color *ncolor)
 	return XftColorAllocName(xw.dpy, xw.vis, xw.cmap, name, ncolor);
 }
 
+/*
+ * The background at the alpha, premultiplied as the compositor (X Render's ARGB) takes it: the colour scaled
+ * by the alpha too, not the alpha byte alone, or a coloured background shows lighter, as if more
+ * see-through, than black does at the same alpha.
+ */
+static void
+xsetbgalpha(void)
+{
+	Color *c = &dc.col[defaultbg];
+	unsigned int r, g, b, a = (unsigned int)(0xff * alpha);
+
+	c->color.alpha = (unsigned short)(0xffff * alpha);
+	c->color.red = (unsigned short)(c->color.red * alpha);
+	c->color.green = (unsigned short)(c->color.green * alpha);
+	c->color.blue = (unsigned short)(c->color.blue * alpha);
+	r = (c->pixel >> 16 & 0xff) * a / 0xff;
+	g = (c->pixel >> 8 & 0xff) * a / 0xff;
+	b = (c->pixel & 0xff) * a / 0xff;
+	c->pixel = a << 24 | r << 16 | g << 8 | b;
+}
+
 void
 xloadcols(void)
 {
@@ -823,9 +844,7 @@ xloadcols(void)
 				die("could not allocate color %d\n", i);
 		}
 
-	dc.col[defaultbg].color.alpha = (unsigned short)(0xffff * alpha);
-	dc.col[defaultbg].pixel &= 0x00FFFFFF;
-	dc.col[defaultbg].pixel |= (unsigned char)(0xff * alpha) << 24;
+	xsetbgalpha();
 	loaded = 1;
 }
 
@@ -856,11 +875,8 @@ xsetcolorname(int x, const char *name)
 	XftColorFree(xw.dpy, xw.vis, xw.cmap, &dc.col[x]);
 	dc.col[x] = ncolor;
 
-	if (x == defaultbg) {
-		dc.col[defaultbg].color.alpha = (unsigned short)(0xffff * alpha);
-		dc.col[defaultbg].pixel &= 0x00FFFFFF;
-		dc.col[defaultbg].pixel |= (unsigned char)(0xff * alpha) << 24;
-	}
+	if (x == defaultbg)
+		xsetbgalpha();
 
 	return 0;
 }
