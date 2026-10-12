@@ -1590,10 +1590,14 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 		}
 	}
 
+	/*
+	 * Faint: the text a third of the way to its ground rather than halved toward black, which on a dark ground
+	 * left it all but the ground's own colour and on a light one made it darker, not fainter.
+	 */
 	if ((base.mode & ATTR_BOLD_FAINT) == ATTR_FAINT) {
-		colfg.red = fg->color.red / 2;
-		colfg.green = fg->color.green / 2;
-		colfg.blue = fg->color.blue / 2;
+		colfg.red = (fg->color.red * 2 + bg->color.red) / 3;
+		colfg.green = (fg->color.green * 2 + bg->color.green) / 3;
+		colfg.blue = (fg->color.blue * 2 + bg->color.blue) / 3;
 		colfg.alpha = fg->color.alpha;
 		XftColorAllocValue(xw.dpy, xw.vis, xw.cmap, &colfg, &revfg);
 		fg = &revfg;
